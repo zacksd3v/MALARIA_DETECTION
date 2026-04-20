@@ -5,10 +5,8 @@ import numpy as np
 import time
 import pandas as pd
 
-# --- PAGE CONFIG ---
 st.set_page_config(page_title="FUDMA Malaria Detector", page_icon="🔬", layout="wide")
 
-# 1. Load the trained model
 @st.cache_resource
 def load_my_model():
     try:
@@ -19,24 +17,21 @@ def load_my_model():
 
 model = load_my_model()
 
-# --- SIDEBAR SETUP ---
 st.sidebar.image("https://cdn-icons-png.flaticon.com/512/2864/2864274.png", width=100)
 st.sidebar.title("Main Menu")
 choice = st.sidebar.radio("Navigation", ["Student Profile", "Live Diagnosis", "System Performance"])
 
-# --- SHARED FOOTER ---
 st.sidebar.markdown("---")
 st.sidebar.write("**Supervised by:** Project Supervisor")
 st.sidebar.write("**Session:** 2025/2026")
 
-# --- PAGE 1: STUDENT PROFILE ---
 if choice == "Student Profile":
     st.title("🎓 Candidate Information")
     st.info("Department of Computer Science - Federal University Dutsin-Ma")
     
     col_a, col_b = st.columns([1, 2])
     with col_a:
-        st.image("https://cdn-icons-png.flaticon.com/512/3135/3135715.png", width=200) # Placeholder for student photo
+        st.image("https://cdn-icons-png.flaticon.com/512/3135/3135715.png", width=200)
     with col_b:
         st.subheader("Personal Details")
         st.table({
@@ -44,7 +39,6 @@ if choice == "Student Profile":
             "Details": ["Zakariyya Abubakar", "CSA/2025/19980", "Computer Science", "Final Year", "FUDMA, Nigeria"]
         })
 
-# --- PAGE 2: LIVE DIAGNOSIS ---
 elif choice == "Live Diagnosis":
     st.title("🔬 AI-Powered Malaria Screening")
     st.write("Upload a thin blood smear image to perform automated parasite detection.")
@@ -93,11 +87,9 @@ elif choice == "Live Diagnosis":
                     st.progress(float(confidence))
                     st.write(f"**Diagnosis Speed:** {round(end_time - start_time, 4)} seconds")
 
-# --- PAGE 3: SYSTEM PERFORMANCE ---
 else:
     st.title("📊 Model Analysis & Research Metrics")
     
-    # Static Charts from Training
     st.subheader("Training History (Static Graphs)")
     c1, c2 = st.columns(2)
     with c1:
@@ -109,7 +101,6 @@ else:
 
     st.divider()
 
-    # Interactive Charts (Showing Mastery of Data Visualization)
     st.subheader("📈 Interactive Prediction Reliability Chart")
     # Generating dummy data to show how the model performs across epochs
     chart_data = pd.DataFrame(
@@ -121,7 +112,6 @@ else:
 
     st.divider()
 
-    # Model Summary Section (The 'Pro' Feature)
     st.subheader("🧱 Deep Learning Architecture")
     if st.checkbox("Expand Technical Layer Details (CNN Summary)"):
         if model:
