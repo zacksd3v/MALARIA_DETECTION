@@ -1,4 +1,7 @@
 streamlit
-pillow
 tensorflow
+pillow
 numpy
+pandas
+
+pip install -r requirements.txt
